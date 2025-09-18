@@ -1,0 +1,5 @@
+- [x] Add authentication state (isLogin, role) to App.jsx
+- [x] Uncomment and update conditional navbar rendering in App.jsx
+- [ ] Update Librarian_home.jsx to include Librarian_nav component
+- [ ] Update Librarian_book.jsx and other librarian pages to account for sidebar margin
+- [ ] Test librarian navbar visibility and functionality
