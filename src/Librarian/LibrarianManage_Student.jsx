@@ -44,7 +44,7 @@ export default function StudentManagementPage() {
     const fetchStudents = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:5505/api/student/students/all", {
+        const res = await fetch(`${BACKEND_URL}student/students/all`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (!res.ok) {
@@ -69,7 +69,7 @@ export default function StudentManagementPage() {
   // Suspend student
   const handleSuspend = async (studentId) => {
     try {
-      const res = await fetch(`http://localhost:5505/api/librarian/students/suspend/${studentId}`, {
+      const res = await fetch(`${BACKEND_URL}librarian/students/suspend/${studentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

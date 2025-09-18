@@ -14,7 +14,7 @@ export default function Return_requests() {
     const fetchReturnRequests = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5505/api/librarian/requests?status=return_requested",
+          `${BACKEND_URL}/librarian/requests?status=return_requested`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setRequests(res.data.requests || []);
@@ -31,7 +31,7 @@ export default function Return_requests() {
   const handleApprove = async (id) => {
     try {
       await axios.put(
-        `http://localhost:5505/api/librarian/requests/${id}`,
+        `${BACKEND_URL}/librarian/requests/${id}`,
         { status: "returned" },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -45,7 +45,7 @@ export default function Return_requests() {
   const handleReject = async (id) => {
     try {
       await axios.put(
-        `http://localhost:5505/api/librarian/requests/${id}`,
+        `${BACKEND_URL}/api/librarian/requests/${id}`,
         { status: "rejected", rejectionReason: "Return not accepted" },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -10,7 +10,7 @@ export default function ReturnedBooksPage() {
   useEffect(() => {
     const fetchReturnedBooks = async () => {
       try {
-        const res = await axios.get('/api/issue/returned'); // Adjust path if needed
+        const res = await axios.get(`${BACKEND_URL}/api/issue/returned`); // Adjust path if needed
         setReturnedBooks(res.data.books || []);
       } catch (err) {
         console.error("Error fetching returned books:", err);
@@ -25,7 +25,7 @@ export default function ReturnedBooksPage() {
 
 const handleReturnRequest = async (requestId) => {
   try {
-    const res = await axios.post('/api/issue/request-return', { requestId });
+    const res = await axios.post(`${BACKEND_URL}/api/issue/request-return`, { requestId });
     alert(res.data.message); // Or use toast notification
   } catch (err) {
     console.error("Return request failed:", err);

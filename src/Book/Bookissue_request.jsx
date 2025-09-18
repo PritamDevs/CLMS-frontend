@@ -28,7 +28,7 @@ export default function BookIssueRequest() {
       const token = localStorage.getItem('token');
 
       const response = await axios.post(
-        'http://localhost:5505/api/student/request-book',
+        `${BACKEND_URL}/api/student/request-book`,
         { bookId: formData.bookId }, // backend only needs bookId
         {
           headers: {

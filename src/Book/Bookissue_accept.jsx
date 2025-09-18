@@ -16,7 +16,7 @@ export default function BookissueAccept() {
     toast.success('');
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5505/api/librarian/requests', {
+      const res = await axios.get(`${BACKEND_URL}/api/librarian/requests`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setRequests(res.data.requests || []);
@@ -35,7 +35,7 @@ export default function BookissueAccept() {
     try {
       const token = localStorage.getItem('token');
       const res = await axios.put(
-        `http://localhost:5505/api/librarian/requests/${id}`,
+        `${BACKEND_URL}/api/librarian/requests/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

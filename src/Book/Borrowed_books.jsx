@@ -139,7 +139,7 @@ export default function BorrowedBooks() {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("No token found. Please login as a student.");
 
-      const res = await fetch("http://localhost:5505/api/student/my-requests", {
+      const res = await fetch(`${BACKEND_URL}/api/student/my-requests`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -163,7 +163,7 @@ export default function BorrowedBooks() {
       const token = localStorage.getItem("token");
       if (!token) throw new Error("No token found.");
 
-      const res = await fetch(`http://localhost:5505/api/student/request-return`, {
+      const res = await fetch(`${BACKEND_URL}/api/student/request-return`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

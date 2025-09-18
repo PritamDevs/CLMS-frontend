@@ -7,13 +7,13 @@ export default function AllBooks() {
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState({ filterType: 'title', query: '' });
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+
 
   const fetchBooks = async (params = {}) => {
     setLoading(true);
     try {
         const token = localStorage.getItem("token"); 
-        const response = await axios.get('http://localhost:5505/api/book/all', { params ,  headers: { Authorization: `Bearer ${token}` },});
+        const response = await axios.get(`${BACKEND_URL}/api/book/all`, { params ,  headers: { Authorization: `Bearer ${token}`},});
         setBooks(response.data.books || []);
     } catch (error) {
       console.error('Error fetching books:', error);
@@ -30,7 +30,7 @@ export default function AllBooks() {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5505/api/student/request-book',
+        `${BACKEND_URL}/api/student/request-book`,
         { bookId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
