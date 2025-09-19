@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { BACKEND_URL } from '../config';
+import { BACKEND_URL } from '../config/index';
 import axios from 'axios'
 import Loading from '../component/Loading';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ function Librarian_login({ setIsLogin, setRole }) {
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`${BACKEND_URL}/librarian/login`, { email, password })
+      const { data } = await axios.post(`${BACKEND_URL}/api/librarian/login`, { email, password })
       const { success, message, librarian, token } = data;
 
       if (success && librarian && token) {

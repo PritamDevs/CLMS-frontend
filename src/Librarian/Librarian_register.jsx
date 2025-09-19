@@ -35,7 +35,7 @@ function Librarian_register() {
             return toast.error('Passwords do not match');
         }   
         try {
-            const res = await axios.post(`${BACKEND_URL}/librarian/register`, {
+            const res = await axios.post(`${BACKEND_URL}/api/librarian/register`, {
                 name,
                 email,
                 password,

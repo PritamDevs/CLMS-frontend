@@ -39,7 +39,7 @@ function Student_Register() {
     }
 
     try {
-      const res = await axios.post(`${BACKEND_URL}/student/register`, {
+      const res = await axios.post(`${BACKEND_URL}/api/student/register`, {
         name,
         email,
         password,

@@ -18,7 +18,7 @@ function Student_Login({ setIsLogin, setRole }) {
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`${BACKEND_URL}/student/login`, { email, password });
+      const { data } = await axios.post(`${BACKEND_URL}/api/student/login`, { email, password });
       console.log(data);
 
       const { success, message, student, token } = data;

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 export default function Return_requests() {
   const [requests, setRequests] = useState([]);
@@ -14,7 +15,7 @@ export default function Return_requests() {
     const fetchReturnRequests = async () => {
       try {
         const res = await axios.get(
-          `${BACKEND_URL}/librarian/requests?status=return_requested`,
+          `${BACKEND_URL}/api/librarian/requests?status=return_requested`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
         setRequests(res.data.requests || []);
@@ -31,7 +32,7 @@ export default function Return_requests() {
   const handleApprove = async (id) => {
     try {
       await axios.put(
-        `${BACKEND_URL}/librarian/requests/${id}`,
+        `${BACKEND_URL}/api/librarian/requests/${id}`,
         { status: "returned" },
         { headers: { Authorization: `Bearer ${token}` } }
       );

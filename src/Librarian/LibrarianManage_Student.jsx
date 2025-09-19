@@ -31,6 +31,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import Loading from '../component/Loading';
 import { toast } from 'react-toastify';
+import { BACKEND_URL } from '../config';
 
 export default function StudentManagementPage() {
   const { token } = useAuth();
@@ -44,7 +45,7 @@ export default function StudentManagementPage() {
     const fetchStudents = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${BACKEND_URL}student/students/all`, {
+        const res = await fetch(`${BACKEND_URL}/api/student/students/all`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         if (!res.ok) {
@@ -69,7 +70,7 @@ export default function StudentManagementPage() {
   // Suspend student
   const handleSuspend = async (studentId) => {
     try {
-      const res = await fetch(`${BACKEND_URL}librarian/students/suspend/${studentId}`, {
+      const res = await fetch(`${BACKEND_URL}/api/librarian/students/suspend/${studentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

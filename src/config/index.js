@@ -14,12 +14,10 @@
 // }
 
 
-// config/index.js
-const env = import.meta.env.VITE_FRONTEND_ENV || "development";
+// Local development backend
+export const BACKEND_URL = "http://localhost:5505";
 
-export const BACKEND_URL =
-  env === "production"
-    ? import.meta.env.VITE_BACKEND_URL_PROD
-    : import.meta.env.VITE_BACKEND_URL_LOCAL;
+// Production backend
+// export const BACKEND_URL = "https://clms-backend-1gkb.onrender.com/api";
 
 console.log("Using backend URL:", BACKEND_URL);
