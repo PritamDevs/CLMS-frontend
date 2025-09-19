@@ -52,9 +52,9 @@ function App() {
       }
       let url = "";
       if (storedRole === "student") {
-        url = `${BACKEND_URL}/api/student/profile`;
+        url = `${BACKEND_URL}/student/profile`;
       } else if (storedRole === "librarian") {
-        url = `${BACKEND_URL}/api/librarian/profile/`;
+        url = `${BACKEND_URL}/librarian/profile/`;
       }
 
       if (url) {
