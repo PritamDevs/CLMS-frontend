@@ -28,7 +28,7 @@ export default function LibrarianBookList() {
   const fetchBooks = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:5505/api/book/all", {
+      const response = await axios.get(`http:/${BACKEND_URL}/api/book/all`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks(response.data.books || []);
