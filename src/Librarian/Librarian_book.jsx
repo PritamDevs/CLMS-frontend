@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Librarian_nav from "../component/Librarian_nav";
+import { BACKEND_URL } from "../config";
 
 export default function LibrarianBookList() {
   const [books, setBooks] = useState([]);
@@ -28,7 +29,7 @@ export default function LibrarianBookList() {
   const fetchBooks = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http:/${BACKEND_URL}/api/book/all`, {
+      const response = await axios.get(`http://${BACKEND_URL}/api/book/all`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks(response.data.books || []);
@@ -105,7 +106,7 @@ export default function LibrarianBookList() {
       if (selectedBook) {
         // Update book
         await axios.put(
-          `http://localhost:5505/api/book/update/${selectedBook._id}`,
+          `http://${BACKEND_URL}/api/book/update/${selectedBook._id}`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -113,7 +114,7 @@ export default function LibrarianBookList() {
       } else {
         // Create book
         await axios.post(
-          "http://localhost:5505/api/book/create",
+          `http://${BACKEND_URL}/api/book/create`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -130,7 +131,7 @@ export default function LibrarianBookList() {
   // ✅ Delete book
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5505/api/book/delete/${id}`, {
+      await axios.delete(`http://${BACKEND_URL}/api/book/delete/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMessage("Book deleted successfully!");
