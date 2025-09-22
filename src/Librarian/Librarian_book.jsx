@@ -142,7 +142,9 @@ export default function LibrarianBookList() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100 p-6 font-sans ml-64">
+  <div className="flex">
+    <Librarian_nav/>
+    <div className="flex-1 relative min-h-screen bg-gray-100 p-6 font-sans ml-64">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -327,5 +329,6 @@ export default function LibrarianBookList() {
         )}
       </div>
     </div>
+  </div>
   );
 }

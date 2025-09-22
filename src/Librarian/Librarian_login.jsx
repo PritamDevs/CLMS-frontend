@@ -5,9 +5,11 @@ import { BACKEND_URL } from '../config/index';
 import axios from 'axios'
 import Loading from '../component/Loading';
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 
-function Librarian_login({ setIsLogin, setRole }) {
+function Librarian_login() {
   const navigate = useNavigate();
+  const{login}=useAuth();
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
   let [loading, setLoading] = useState(false);
@@ -21,14 +23,14 @@ function Librarian_login({ setIsLogin, setRole }) {
       const { success, message, librarian, token } = data;
 
       if (success && librarian && token) {
+        login(token, 'librarian', librarian);
         localStorage.setItem('token', token);
         localStorage.setItem('role', 'librarian');
         localStorage.setItem('user', JSON.stringify({ ...librarian, role: 'librarian' }));
 
         toast.success(message || "Login successful")
-
-        setIsLogin(true);
-        if (setRole) setRole("librarian")
+        // setIsLogin(true);
+        // if (setRole) setRole("librarian")
         navigate('/Librarian/Home');
       } else {
         toast.error(message || "Login failed")

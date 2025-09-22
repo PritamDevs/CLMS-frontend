@@ -190,8 +190,10 @@ export default function BorrowedBooks() {
   const issuedBooks = requests.filter(r => r.status === "approved" || r.status === "return_requested");
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 font-sans">
+  <div className="flex">
     <Student_nav />
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
+
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <h2 className="text-2xl font-bold text-indigo-700 mb-6 text-center">
           📚 My Borrowed Books
@@ -273,5 +275,6 @@ export default function BorrowedBooks() {
         )}
       </div>
     </div>
+  </div>
   );
 }

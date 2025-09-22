@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import Librarian_nav from "../component/Librarian_nav";
 
 export default function Return_requests() {
   const [requests, setRequests] = useState([]);
@@ -62,8 +63,10 @@ export default function Return_requests() {
   if (requests.length === 0) return <p className="p-6">No pending return requests.</p>;
 
   return (
-    <div className="p-6 ml-64">
-      <h1 className="text-2xl font-bold mb-4">Return Requests</h1>
+  <div className="flex">
+    <Librarian_nav/>
+    <div className="flex-1 p-6 ml-64">
+      <h1 className="w-full text-2xl font-bold mb-4">Return Requests</h1>
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead className="bg-indigo-700 text-white">
           <tr>
@@ -102,5 +105,6 @@ export default function Return_requests() {
         </tbody>
       </table>
     </div>
+  </div>  
   );
 }

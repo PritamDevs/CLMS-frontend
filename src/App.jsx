@@ -28,19 +28,25 @@ import Return_requests from './Book/Return_requests'
 import Home from './pages/Home'
 import axios from 'axios';
 import Loading from './component/Loading';
+import { useAuth } from './context/AuthContext';
 
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
-  const [role, setRole] = useState('')
+  // const [isLogin, setIsLogin] = useState(false)
+  // const [role, setRole] = useState('')
+  // const {token,role}=useAuth();
+  const { token, role, login, logout } = useAuth();
+  const isLogin = !!token;
   const [loading, setLoading] = useState(true)
 
   const handleRefresh = async () => {
     const token = localStorage.getItem("token");
     const storedRole = localStorage.getItem("role");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     if (!token || !storedRole) {
       setLoading(false);
-      setRole('');
+      logout();
+      // setRole('');
       return;
     }
     try {
@@ -52,27 +58,34 @@ function App() {
       }
       let url = "";
       if (storedRole === "student") {
-        url = `${BACKEND_URL}/student/profile`;
+        url = `${BACKEND_URL}/api/student/profile`;
       } else if (storedRole === "librarian") {
-        url = `${BACKEND_URL}/librarian/profile/`;
+        url = `${BACKEND_URL}/api/librarian/profile`;
       }
 
       if (url) {
+        try{
 
         await axios.get(url, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setIsLogin(true);
-        setRole(storedRole);
+        // setIsLogin(true);
+        // setRole(storedRole);
+        login(token, storedRole, storedUser);
+      }catch(error){
+        console.error("Profile fetch failed:", err.response?.data || err.message);
+        if (err.response?.status === 401) logout(); 
+      }
 
       }
     } catch (error) {
       console.error("Auth refresh failed:", error.message);
+      logout();
 
-      setIsLogin(false);
-      setRole("");
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
+      // setIsLogin(false);
+      // setRole("");
+      // localStorage.removeItem("token");
+      // localStorage.removeItem("role");
     } finally {
       setLoading(false);
     }
@@ -92,9 +105,9 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path='/' element={<Home />} />
-        <Route path='/Student/Login' element={<Student_Login setIsLogin={setIsLogin} setRole={setRole} />} />
+        <Route path='/Student/Login' element={<Student_Login/>} />
         <Route path='/Student/Register' element={<Student_Register />} />
-        <Route path='/Librarian/Login' element={<Librarian_login setIsLogin={setIsLogin} setRole={setRole} />} />
+        <Route path='/Librarian/Login' element={<Librarian_login/>} />
         <Route path='/Librarian/Register' element={<Librarian_register />} />
 
         {/* Student Routes */}
@@ -102,7 +115,7 @@ function App() {
           path='/Student/Home'
           element={
             isLogin && role === 'student' ? (
-              <Student_home setIsLogin={setIsLogin} setRole={setRole} />
+              <Student_home />
             ) : (
               <Navigate to='/Student/Login' replace />
             )
@@ -124,7 +137,7 @@ function App() {
           path='/Librarian/Home'
           element={
             isLogin && role === 'librarian' ? (
-              <Librarian_home setIsLogin={setIsLogin} setRole={setRole} />
+              <Librarian_home/>
             ) : (
               <Navigate to='/Librarian/Login' replace />
             )

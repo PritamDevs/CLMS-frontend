@@ -46,8 +46,10 @@ export default function Librarian_profile() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 font-sans">
-      <Librarian_nav/>
+  <div className="flex">
+    <Librarian_nav/>
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
+  
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* Header Section */}
         <div className="bg-indigo-100 py-8 px-6 text-center">
@@ -90,6 +92,7 @@ export default function Librarian_profile() {
           </div>
         </div>
       </div>
+    </div>
 
       {/* Edit Modal */}
       {isEditing && (

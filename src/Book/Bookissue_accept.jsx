@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {ToastContainer,toast} from 'react-toastify';
 import { BACKEND_URL } from '../config';
+import Librarian_nav from '../component/Librarian_nav';
 
 export default function BookissueAccept() {
   const [requests, setRequests] = useState([]);
@@ -55,8 +56,10 @@ export default function BookissueAccept() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 font-sans ml-64">
-      <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+  <div className='flex'>
+    <Librarian_nav/>
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
+      <div className="w-full bg-white rounded-xl shadow-lg p-8">
         <h2 className="text-2xl font-bold text-indigo-700 mb-6 text-center">
           📋 Book Issue Requests
         </h2>
@@ -116,5 +119,6 @@ export default function BookissueAccept() {
       </div>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>
+  </div>
   );
 }

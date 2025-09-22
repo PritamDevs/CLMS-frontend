@@ -6,9 +6,11 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import Loading from '../component/Loading';
 import { BACKEND_URL } from '../config';
+import { useAuth } from '../context/AuthContext';
 
-function Student_Login({ setIsLogin, setRole }) {
+function Student_Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,19 +21,18 @@ function Student_Login({ setIsLogin, setRole }) {
 
     try {
       const { data } = await axios.post(`${BACKEND_URL}/api/student/login`, { email, password });
-      console.log(data);
-
       const { success, message, student, token } = data;
 
       if (success && student && token) {
-        localStorage.setItem('token', token);
-        localStorage.setItem('role', 'student');
-        localStorage.setItem('user', JSON.stringify({ ...student, role: 'student' }));
+        login(token, 'student', student);
+        // localStorage.setItem('token', token);
+        // localStorage.setItem('role', 'student');
+        // localStorage.setItem('user', JSON.stringify({ ...student, role: 'student' }));
 
         toast.success(message || 'Login successful');
 
-        setIsLogin(true);
-        if (setRole) setRole('student');
+        // setIsLogin(true);
+        // if (setRole) setRole('student');
         navigate('/Student/Home');
       } else {
         toast.error(message || 'Login failed');

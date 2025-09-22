@@ -55,7 +55,9 @@ export default function AllBooks() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 font-sans">
+  <div className="flex">
+    <Student_nav />
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         
         {/* Student Heading */}
@@ -126,6 +128,7 @@ export default function AllBooks() {
       </div>
        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
     </div>
+  </div>
   );
 }
 

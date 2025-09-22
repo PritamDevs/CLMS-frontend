@@ -30,8 +30,9 @@ export default function Student_profile() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 font-sans">
-      <Student_nav />
+  <div className="flex">
+    <Student_nav />
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* Header Section */}
         <div className="bg-indigo-100 py-8 px-6 text-center">
@@ -73,6 +74,7 @@ export default function Student_profile() {
           </div>
         </div>
       </div>
+  </div>
       {isEditing && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
     <div className="bg-white p-6 rounded-lg shadow-lg w-96">

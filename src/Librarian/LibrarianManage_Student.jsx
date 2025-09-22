@@ -32,6 +32,7 @@ import { useAuth } from '../context/AuthContext';
 import Loading from '../component/Loading';
 import { toast } from 'react-toastify';
 import { BACKEND_URL } from '../config';
+import Librarian_nav from '../component/Librarian_nav';
 
 export default function StudentManagementPage() {
   const { token } = useAuth();
@@ -103,7 +104,9 @@ export default function StudentManagementPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 ml-64 font-sans">
+  <div className="flex">
+    <Librarian_nav />
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <h2 className="text-2xl font-bold text-indigo-700 mb-6 text-center">👥 Manage Students</h2>
 
@@ -185,5 +188,6 @@ export default function StudentManagementPage() {
         )}
       </div>
     </div>
+  </div>
   );
 }

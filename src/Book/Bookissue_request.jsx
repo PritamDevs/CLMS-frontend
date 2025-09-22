@@ -54,8 +54,9 @@ export default function BookIssueRequest() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6 font-sans">
-      <Student_nav/>
+  <div className="flex">
+    <Student_nav/>
+    <div className="flex-1 ml-64 min-h-screen bg-gray-100 p-6 font-sans">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-indigo-700">📥 Issue Book Request</h1>
@@ -143,5 +144,6 @@ export default function BookIssueRequest() {
         </form>
       </div>
     </div>
+  </div>
   );
 }
