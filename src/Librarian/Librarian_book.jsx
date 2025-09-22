@@ -29,7 +29,7 @@ export default function LibrarianBookList() {
   const fetchBooks = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`http://${BACKEND_URL}/api/book/all`, {
+      const response = await axios.get(`${BACKEND_URL}/api/book/all`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setBooks(response.data.books || []);
@@ -106,7 +106,7 @@ export default function LibrarianBookList() {
       if (selectedBook) {
         // Update book
         await axios.put(
-          `http://${BACKEND_URL}/api/book/update/${selectedBook._id}`,
+          `${BACKEND_URL}/api/book/update/${selectedBook._id}`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -114,7 +114,7 @@ export default function LibrarianBookList() {
       } else {
         // Create book
         await axios.post(
-          `http://${BACKEND_URL}/api/book/create`,
+          `${BACKEND_URL}/api/book/create`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
