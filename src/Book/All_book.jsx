@@ -57,7 +57,7 @@ export default function AllBooks() {
   return (
   <div className="flex">
     <Student_nav />
-    <div className="flex-1 mmin-h-screen bg-gray-100 p-6 font-sans">
+    <div className="flex-1 min-h-screen bg-gray-100 p-6 font-sans md:pl-64">
       <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
         
         {/* Student Heading */}
