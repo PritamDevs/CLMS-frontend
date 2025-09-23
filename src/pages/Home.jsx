@@ -10,7 +10,7 @@ export default function Home() {
             {/* Navbar */}
             <header className="bg-white shadow-md fixed w-full top-0 z-50">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                    <h1 className="text-2xl font-bold text-indigo-700">College Library</h1>
+                    <h1 className="text-2xl font-bold text-indigo-700">IntraBooks</h1>
                     <nav className="space-x-6 hidden md:flex">
                         <a href="#" className="text-gray-700 hover:text-indigo-700">Home</a>
                         <a href="#" className="text-gray-700 hover:text-indigo-700">Catalog</a>
